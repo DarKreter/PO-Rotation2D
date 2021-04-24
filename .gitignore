@@ -2,3 +2,6 @@ gnuplot_api_2D_example/
 Rotacja2D.vcxproj
 Rotacja2D.vcxproj.user
 Rotacja2D.vcxproj.filters
+obroty_2D
+obj/
+.vscode/

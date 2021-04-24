@@ -53,7 +53,7 @@ std::istream& operator >> (std::istream& strm, Wektor2D& wek)
 	{
 		strm.clear();
 		strm.ignore(std::numeric_limits<int>::max(), '\n');
-		throw std::exception{"Nie udalo sie wczytac Wektora2D!"};
+		throw std::runtime_error("Nie udalo sie wczytac Wektora2D!");
 	}
 
 	wek[0] = x;

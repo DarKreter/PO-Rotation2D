@@ -3,6 +3,8 @@
 
 #include <iostream>
 #include <array>
+#include <cmath>
+#include <limits>
 
 class Wektor2D 
 {

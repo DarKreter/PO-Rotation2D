@@ -72,3 +72,22 @@ bool Prostokat::CzyProstokat()
 
 	return true;
 }
+
+
+void Prostokat::Rysuj(std::shared_ptr<drawNS::Draw2DAPI> rysownik)
+ {
+  std::vector<drawNS::Point2D> tmp;
+  tmp.push_back(Konwertuj(wierzcholki[0]));
+  tmp.push_back(Konwertuj(wierzcholki[1]));
+  tmp.push_back(Konwertuj(wierzcholki[2]));
+  tmp.push_back(Konwertuj(wierzcholki[3]));
+  tmp.push_back(Konwertuj(wierzcholki[0]));
+  int id = rysownik->draw_polygonal_chain(tmp, "green");
+
+  rysownik->erase_shape(id);
+}
+
+drawNS::Point2D Prostokat::Konwertuj(Wektor2D w)
+ {
+  return drawNS::Point2D(w[0], w[1]);
+}

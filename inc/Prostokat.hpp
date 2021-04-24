@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <Macierz2x2.hpp>
+#include <Dr2D_gnuplot_api.hpp>
 
 class Prostokat {
 	std::array<Wektor2D, 4> wierzcholki;
@@ -14,6 +15,9 @@ public:
 
 	const Wektor2D& operator[](unsigned int n) const;
 	Wektor2D& operator[](unsigned int n);
+
+	void Rysuj(std::shared_ptr<drawNS::Draw2DAPI> rysownik);
+	drawNS::Point2D Konwertuj(Wektor2D w);
 
 	void Rotacja(double alpha);
 	void Translacja(Wektor2D wektor);

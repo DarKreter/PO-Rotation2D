@@ -8,36 +8,40 @@ using namespace std;
 
 int main(int argc, char* argv[])
 {
-    /*if (argc < 2)
+    if (argc < 2)
     {
         cout << "Brak nazwy pliku z prostokatem jako argument wywolania!" << endl;
         exit(0);
-    }*/
+    }
 
     try
     {
 
-    /*std::shared_ptr<drawNS::Draw2DAPI> rysownik(
-        new drawNS::APIGnuPlot2D(-10, 10, -10, 10, 0));*/
+     std::shared_ptr<drawNS::Draw2DAPI> rysownik(
+         new drawNS::APIGnuPlot2D(-10, 10, -10, 10, 0));
 
     char znak;
-    Prostokat prostokat("prostokat.dat");
+    Prostokat prostokat(argv[1]);
+
+    prostokat.Rysuj(rysownik);
+    system("clear");
 
     cout << "o - obrot prostokata o zadany kat" << endl
         << "p - przesuniecie prostokata o zadany wektor" << endl
         << "w - wyswietlenie wspolrzednych wierzcholkow" << endl
         << "m - wyswietl menu" << endl
-        << "r - rysuj" << endl
         << "k - koniec dzialania programu" << endl
         << "c - czysci ekran" << endl;
 
     while (true)
     {
+
         cout << "Twoj wybor? (m - menu): ";
         cin >> znak;
 
         switch (znak)
         {
+
         case 'w':
             cout << prostokat << endl;
 
@@ -57,6 +61,8 @@ int main(int argc, char* argv[])
 
             prostokat.Rotacja(alpha*ip);
 
+            prostokat.Rysuj(rysownik);
+
             break;
 
         case 'p':
@@ -65,8 +71,9 @@ int main(int argc, char* argv[])
                 Wektor2D w;
                 cin >> w;
                 prostokat.Translacja(w);
+                prostokat.Rysuj(rysownik);
             }
-            catch (std::exception& e)
+            catch (std::runtime_error& e)
             {
                 cout << "Blednie podany wektor translacji!" << endl;
             }
@@ -87,7 +94,7 @@ int main(int argc, char* argv[])
             break;
             
         case 'c':
-            system("cls");//TODO zmien na linuxie
+            system("clear");//TODO zmien na linuxie
             break;
 
         case 'k':
@@ -104,7 +111,7 @@ int main(int argc, char* argv[])
     }
     }
 
-    catch (std::exception& e)
+    catch (std::runtime_error& e)
     {
         cout << e.what() << endl;
     }

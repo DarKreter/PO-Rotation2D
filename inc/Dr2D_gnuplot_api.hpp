@@ -11,7 +11,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 #ifndef DR2D_GPLT_API_HH
 #define DR2D_GPLT_API_HH
 
-#include "Draw2D_api_interface.hh"
+#include "Draw2D_api_interface.hpp"
 #include <list>
 #include <map>
 #include <utility>

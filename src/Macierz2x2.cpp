@@ -1,5 +1,5 @@
 #include "Macierz2x2.hpp"
-#define _USE_MATH_DEFINES //Maybe delete
+//#define _USE_MATH_DEFINES //Maybe delete
 #include <math.h>
 
 Macierz2x2::Macierz2x2(double kat)

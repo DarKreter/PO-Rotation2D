@@ -15,10 +15,10 @@ obroty_2D: obj obj/main.o obj/Prostokat.o obj/Macierz2x2.o obj/Wektor2D.o\
 obj:
 	mkdir obj
 
-obj/gnuplot.o: inc/Dr2D_gnuplot_api.hpp inc/Draw2D_api_interface.hpp src/Dr2D_gnuplot_api.cpp
-	g++ -c ${CXXFLAGS} -o obj/gnuplot.o src/Dr2D_gnuplot_api.cpp
+obj/gnuplot.o: inc/gnuplot.hpp src/gnuplot.cpp
+	g++ -c ${CXXFLAGS} -o obj/gnuplot.o src/gnuplot.cpp
 
-obj/main.o: src/main.cpp inc/Prostokat.hpp inc/Macierz2x2.hpp inc/Wektor2D.hpp inc/Dr2D_gnuplot_api.hpp
+obj/main.o: src/main.cpp inc/Prostokat.hpp inc/Macierz2x2.hpp inc/Wektor2D.hpp inc/gnuplot.hpp
 	g++ -c ${CXXFLAGS} -o obj/main.o src/main.cpp
 
 obj/Prostokat.o: src/Prostokat.cpp inc/Prostokat.hpp

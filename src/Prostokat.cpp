@@ -1,5 +1,6 @@
 #include "Prostokat.hpp"
 #include <fstream>
+#include <iomanip>
 
 std::ostream& operator<<(std::ostream& strm, const Prostokat& pr)
 {
@@ -17,10 +18,11 @@ std::istream& operator>>(std::istream& strm, Prostokat& pr)
 	return strm;
 }
 
-Prostokat::Prostokat(std::string nazwaPliku)
+Prostokat::Prostokat(std::string name)
 {
-	std::ifstream plik(nazwaPliku);
+	std::ifstream plik(name);
 	plik >> (*this);
+	plik.close();
 }
 
 const Wektor2D& Prostokat::operator[](unsigned int n) const
@@ -53,41 +55,37 @@ void Prostokat::Translacja(Wektor2D wektor)
 
 bool Prostokat::CzyProstokat()
 {
-	//0   1
+	//3   2
 	// 
-	//2   3
+	//0   1
 
-	double epsilon = 0.0001;
-	if ( abs((wierzcholki[0] - wierzcholki[1]).Length() - (wierzcholki[2] - wierzcholki[3]).Length()) > epsilon)
-		return false;
+	double epsilon = 0.00000000001;
+	double bok1 = (wierzcholki[0] - wierzcholki[1]).Length(),
+		   bok2 = (wierzcholki[0] - wierzcholki[3]).Length(), 
+		   bok3 = (wierzcholki[2] - wierzcholki[3]).Length(), 
+		   bok4 = (wierzcholki[1] - wierzcholki[2]).Length();
 
-	if ( abs((wierzcholki[0] - wierzcholki[2]).Length() - (wierzcholki[1] - wierzcholki[3]).Length()) > epsilon )
-		return false;
+	if ( fabs(bok1 - bok3) > epsilon)
+		std::cout << "Pierwsza para bokow nie jest sobie rowna!!!" << std::endl;
+	else
+		std::cout << "Pierwsza para bokow jest identyczna." << std::endl;
 
-	if (abs((wierzcholki[0] - wierzcholki[1]) * (wierzcholki[1] - wierzcholki[3])) > epsilon)
-		return false;
+	std::cout << "\tDlugosc pierwszego boku: " << std::fixed << std::setprecision(10) << bok1 << std::endl;
+	std::cout << "\tDlugosc drugiego boku:   " << std::fixed << std::setprecision(10) << bok3 << std::endl << std::endl;
 
-	if (abs((wierzcholki[0] - wierzcholki[1]) * (wierzcholki[2] - wierzcholki[3])) > epsilon)
-		return false;
+	if ( fabs(bok2 - bok4) > epsilon )
+		std::cout << "Druga para bokow nie jest sobie rowna!!!" << std::endl;
+	else
+		std::cout << "Druga para bokow jest identyczna." << std::endl;
+
+	std::cout << "\tDlugosc pierwszego boku: " << std::fixed << std::setprecision(10) << bok2 << std::endl;
+	std::cout << "\tDlugosc drugiego boku:   " << std::fixed << std::setprecision(10) << bok4 << std::endl << std::endl;
 
 	return true;
 }
 
-
-void Prostokat::Rysuj(std::shared_ptr<drawNS::Draw2DAPI> rysownik)
- {
-  std::vector<drawNS::Point2D> tmp;
-  tmp.push_back(Konwertuj(wierzcholki[0]));
-  tmp.push_back(Konwertuj(wierzcholki[1]));
-  tmp.push_back(Konwertuj(wierzcholki[2]));
-  tmp.push_back(Konwertuj(wierzcholki[3]));
-  tmp.push_back(Konwertuj(wierzcholki[0]));
-  int id = rysownik->draw_polygonal_chain(tmp, "green");
-
-  rysownik->erase_shape(id);
+Prostokat::~Prostokat()
+{
+	system("rm temp.dat");
 }
 
-drawNS::Point2D Prostokat::Konwertuj(Wektor2D w)
- {
-  return drawNS::Point2D(w[0], w[1]);
-}

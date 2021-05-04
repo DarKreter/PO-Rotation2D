@@ -99,7 +99,7 @@ int main(int argc, char* argv[])
             break;
             
         case 'c':
-            system("clear");//TODO zmien na linuxie
+            system("clear");
             break;
 
         case 'k':

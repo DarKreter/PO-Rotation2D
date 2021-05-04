@@ -4,10 +4,10 @@
 
 Macierz2x2::Macierz2x2(double kat)
 {
-	tab[0][0] = cos(kat * M_PI / 180);
+	tab[0][0] =  cos(kat * M_PI / 180);
 	tab[0][1] = -sin(kat * M_PI / 180);
-	tab[1][0] = sin(kat * M_PI / 180);
-	tab[1][1] = cos(kat * M_PI / 180);
+	tab[1][0] =  sin(kat * M_PI / 180);
+	tab[1][1] =  cos(kat * M_PI / 180);
 }
 
 const Wektor2D& Macierz2x2::operator[](unsigned int n) const

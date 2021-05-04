@@ -60,6 +60,7 @@ int main(int argc, char* argv[])
                 cin.clear();
                 cin.ignore(std::numeric_limits<int>::max(), '\n');
                 cout << "Blednie podany kat obrotu lub ilosc powtorzen!" << endl;
+                break;
             }
             for(int i=0;i<ip;++i)
                 prostokat.Rotacja(alpha);

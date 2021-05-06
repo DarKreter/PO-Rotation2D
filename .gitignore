@@ -5,3 +5,6 @@ Rotacja2D.vcxproj.filters
 obroty_2D
 obj/
 .vscode/
+.vs/
+*.sln
+*.vcxproj*
